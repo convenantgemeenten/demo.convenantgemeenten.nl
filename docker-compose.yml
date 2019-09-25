@@ -16,7 +16,7 @@ services:
         - backend
   agetest-service:
       container_name: agetest-service
-      image: convenantgemeenten/agetest-service
+      image: convenantgemeenten/agetest-service:latest
       restart: always
       ports:
         - '8080'
