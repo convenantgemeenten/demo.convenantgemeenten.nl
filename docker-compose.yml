@@ -28,9 +28,24 @@ services:
         - ./.data:/home/librarian/graph
       networks:
         - backend
+  kinsmantest-service:
+      container_name: kinsmantest-service
+      image: convenantgemeenten/kinsmantest-service:latest
+      restart: always
+      ports:
+        - '8080'
+        - '9990'
+      environment:
+        - "WEDDING_CONFIG=/home/librarian/conf/application.conf"
+      volumes:
+        - ./conf:/home/librarian/conf:ro
+        - ./.data:/home/librarian/graph
+      networks:
+        - backend
   nginx:
     depends_on:
       - agetest-service
+      - kinsmantest-service
       - weddingplanner
     image: nginx:latest
     restart: always
