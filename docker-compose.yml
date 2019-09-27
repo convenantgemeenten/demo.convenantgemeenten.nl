@@ -6,12 +6,11 @@ services:
       restart: always
       ports:
         - '8081'
-        - '9990'
       environment:
         - "WEDDING_CONFIG=/home/librarian/conf/application.conf"
       volumes:
         - ./config/weddingplanner:/home/librarian/conf:ro
-        - ./.data:/home/librarian/graph
+        - ./.data/weddingplanner:/home/librarian/graph
       networks:
         - backend
   agetest-service:
@@ -20,12 +19,11 @@ services:
       restart: always
       ports:
         - '8080'
-        - '9990'
       environment:
-        - "WEDDING_CONFIG=/home/librarian/conf/application.conf"
+        - "AGETEST_CONFIGS_PATH=/home/librarian/conf/"
       volumes:
-        - ./conf:/home/librarian/conf:ro
-        - ./.data:/home/librarian/graph
+        - ./config/agetest:/home/librarian/conf:ro
+        - ./.data/agetest:/home/librarian/graph
       networks:
         - backend
   kinsmantest-service:
@@ -34,12 +32,11 @@ services:
       restart: always
       ports:
         - '8080'
-        - '9990'
       environment:
-        - "WEDDING_CONFIG=/home/librarian/conf/application.conf"
+        - "KINSMANTEST_CONFIGS_PATH=/home/librarian/conf/"
       volumes:
-        - ./conf:/home/librarian/conf:ro
-        - ./.data:/home/librarian/graph
+        - ./config/kinsmantest:/home/librarian/conf:ro
+        - ./.data/kinsmantest:/home/librarian/graph
       networks:
         - backend
   nginx:
