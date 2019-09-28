@@ -6,10 +6,12 @@
     [services.AgeTestService]
     endpoint-url = "http://demo.convenantgemeenten.nl/agetest"
     documentation-url = "http://demo.convenantgemeenten.nl/agetest"
+    api-specification-document-url = "https://raw.githubusercontent.com/convenantgemeenten/AgeTest-API/master/openapi.yaml"
     authorization-model = "none"
 
     [services.KinsmanTestService]
     endpoint-url = "http://demo.convenantgemeenten.nl/kinsmantest"
     documentation-url = "http://demo.convenantgemeenten.nl/kinsmantest"
+    api-specification-document-url = "https://raw.githubusercontent.com/convenantgemeenten/KinsmanTest-API/master/openapi.yaml"
     authorization-model = "none"
 
