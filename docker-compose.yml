@@ -1,18 +1,5 @@
 version: '3.7'
 services:
-  weddingplanner:
-      container_name: weddingplanner
-      image: broersen/weddingplanner-service:latest
-      restart: always
-      ports:
-        - '8081'
-      environment:
-        - "WEDDING_CONFIG=/home/librarian/conf/application.conf"
-      volumes:
-        - ./config/weddingplanner:/home/librarian/conf:ro
-        - ./.data/weddingplanner:/home/librarian/graph
-      networks:
-        - backend
   agetest-service:
       container_name: agetest-service
       image: convenantgemeenten/agetest-service:latest
@@ -39,11 +26,24 @@ services:
         - ./.data/kinsmantest:/home/librarian/graph
       networks:
         - backend
+  guardianshiptest-service:
+      container_name: guardianshiptest-service
+      image: convenantgemeenten/guardianshiptest-service:latest
+      restart: always
+      ports:
+        - '8080'
+      environment:
+        - "GUARDIANSHIPTEST_CONFIGS_PATH=/home/librarian/conf/"
+      volumes:
+        - ./config/guardianshiptest:/home/librarian/conf:ro
+        - ./.data/guardianshiptest:/home/librarian/graph
+      networks:
+        - backend
   nginx:
     depends_on:
       - agetest-service
       - kinsmantest-service
-      - weddingplanner
+      - guardianshiptest-service
     image: nginx:latest
     restart: always
     ports:

@@ -13,6 +13,7 @@ docker run --detach \
     --env TLS_ORG_CERT=/certs/org.crt \
     --env TLS_ORG_KEY=/certs/org.key \
     --env DISABLE_LOGDB=1 \
-    --publish 4443:443 \
+    --publish 4443:8443 \
+    --rm \
     --restart unless-stopped \
     nlxio/inway:latest
